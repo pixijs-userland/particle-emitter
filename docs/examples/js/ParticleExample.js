@@ -159,6 +159,30 @@
                 // Center on the stage
                 this.emitter.updateOwnerPos(window.innerWidth / 2, window.innerHeight / 2);
 
+                let isMouseDown = false;
+                canvas.addEventListener('mousedown', (e) =>
+                {
+                    if (!this.emitter) return;
+
+                    // Left click
+                    if (e.button === 0)
+                    {
+                        isMouseDown = true;
+                        this.emitter.emit = true;
+                        this.emitter.resetPositionTracking();
+                        this.emitter.updateOwnerPos(e.offsetX || e.layerX, e.offsetY || e.layerY);
+                    }
+                });
+
+                // Position the emitter to the mouse while left click is down
+                canvas.addEventListener('mousemove', (e) =>
+                {
+                    if (isMouseDown && this.emitter)
+                    {
+                        this.emitter.updateOwnerPos(e.offsetX || e.layerX, e.offsetY || e.layerY);
+                    }
+                });
+
                 // Click on the canvas to trigger
                 canvas.addEventListener('mouseup', (e) =>
                 {
@@ -186,9 +210,7 @@
                     }
                     else
                     {
-                        this.emitter.emit = true;
-                        this.emitter.resetPositionTracking();
-                        this.emitter.updateOwnerPos(e.offsetX || e.layerX, e.offsetY || e.layerY);
+                        isMouseDown = false;
                     }
                 });
 
