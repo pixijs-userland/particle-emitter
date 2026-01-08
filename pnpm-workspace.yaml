@@ -1,0 +1,4 @@
+packages:
+  - './'
+  - 'test/pixi-v6-iife'
+  - 'test/pixi-v6-module'
