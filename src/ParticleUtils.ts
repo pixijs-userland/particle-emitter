@@ -87,9 +87,9 @@ export function normalize(point: IPointData): void
 {
     let oneOverLen = 1 / length(point);
 
-    // if NaN (length of 0), change to 0 so the resulting point is 0
+    // if NaN or Infinity (length of 0), change to 0 so the resulting point is 0
     // eslint-disable-next-line no-self-compare
-    if (oneOverLen !== oneOverLen)
+    if (oneOverLen !== oneOverLen || oneOverLen === Infinity)
     {
         oneOverLen = 0;
     }
