@@ -27,9 +27,9 @@
     "docs-live": "gh-pages -d docs",
     "postdocs-live": "git checkout .",
     "version": "npm run build",
-    "publish:patch": "npm version patch && node build/publish.js",
-    "publish:minor": "npm version minor && node build/publish.js",
-    "publish:major": "npm version major && node build/publish.js",
+    "publish:patch": "npm version patch && npm publish --access public",
+    "publish:minor": "npm version minor && npm publish --access public",
+    "publish:major": "npm version major && npm publish --access public",
     "postpublish": "git push && git push --tags && npm run docs-live",
     "test": "echo done"
   },
@@ -89,13 +89,5 @@
     "pixi.js",
     "particles"
   ],
-  "license": "MIT",
-  "workspaces": {
-    "packages": [
-      "./",
-      "test/pixi-v6-iife",
-      "test/pixi-v6-module"
-    ]
-  },
-  "private": true
+  "license": "MIT"
 }
