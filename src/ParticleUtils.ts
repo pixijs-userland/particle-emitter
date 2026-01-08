@@ -85,7 +85,14 @@ export function length(point: IPointData): number
  */
 export function normalize(point: IPointData): void
 {
-    const oneOverLen = 1 / length(point);
+    let oneOverLen = 1 / length(point);
+
+    // if NaN (length of 0), change to 0 so the resulting point is 0
+    // eslint-disable-next-line no-self-compare
+    if (oneOverLen !== oneOverLen)
+    {
+        oneOverLen = 0;
+    }
 
     point.x *= oneOverLen;
     point.y *= oneOverLen;
