@@ -101,12 +101,8 @@
             {
                 urls = imagePaths.slice();
             }
-            const loader = PIXI.Loader.shared;
-            for (let i = 0; i < urls.length; ++i)
-            {
-                loader.add('img' + i, urls[i]);
-            }
-            loader.load(() =>
+            PIXI.Assets.addBundle('particles', urls.map((url, i) => ({ alias: 'img' + i, src: url })));
+            PIXI.Assets.loadBundle('particles').then(() =>
             {
                 this.bg = new PIXI.Sprite(PIXI.Texture.WHITE);
                 // bg is a 1px by 1px image
